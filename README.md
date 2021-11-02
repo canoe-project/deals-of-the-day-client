@@ -1,1 +1,1 @@
-# deals-of-the-day
+# Deals Of The Day
