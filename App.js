@@ -98,7 +98,7 @@ export default function App({navigation}) {
               name="SignIn"
               component={SignInScreen}
               options={{
-                title: 'Sign in',
+                headerShown: false,
                 // When logging out, a pop animation feels intuitive
                 animationTypeForReplace: state.isSignout ? 'pop' : 'push',
               }}
