@@ -2,7 +2,6 @@ import React from 'react';
 import {Text, StyleSheet, Pressable} from 'react-native';
 
 export default function SignButton(props) {
-  console.log(props);
   const {onPress, title = 'Save', textStyle, buttonStyle} = props;
   return (
     <Pressable style={buttonStyle} onPress={onPress}>

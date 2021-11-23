@@ -1,10 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, PixelRatio} from 'react-native';
 
 const styles = StyleSheet.create({});
-
+console.log(PixelRatio.getFontScale() * 5);
 const color = {
   darkGreen: '#0D3741',
   orange: '#EF840F',
+  whiteGray: '#6f7f89',
+  gray: '#7c7c7c',
 };
 
 const container = StyleSheet.create({
@@ -13,69 +15,108 @@ const container = StyleSheet.create({
     flexDirection: 'column',
     height: '100%',
     width: '100%',
+    backgroundColor: '#ffffff',
   },
   backGroundContainer: {
     flex: 0.43,
   },
   loginContainer: {
     flex: 0.57,
-
     marginLeft: '13%',
     marginRight: '13%',
   },
   titleContainer: {
     position: 'relative',
-    top: '14%',
-    left: '6.2%',
+    top: 94,
+    left: 24,
+  },
+  mainTitleContainer: {
+    paddingLeft: 9,
+    borderLeftWidth: 5,
+    borderLeftColor: color.darkGreen,
+    marginBottom: 25,
   },
   subtitleContainer: {
     flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  snsContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: color.gray,
+    paddingTop: 11,
+    marginTop: '2%',
+    // borderWidth: 1,
   },
 });
 const text = StyleSheet.create({
   title: {
     fontFamily: 'BernardMTCondensed',
     color: color.darkGreen,
-    fontSize: 60,
+    fontSize: 41,
   },
   subTitleBold: {
     fontFamily: 'NanumSquareOTF_acB',
-    fontSize: 28,
+    fontSize: 17,
     color: color.darkGreen,
   },
   subTitle: {
     fontFamily: 'NanumSquareOTF_acR',
-    fontSize: 18,
+    fontSize: 11,
     color: color.darkGreen,
   },
   loginTitle: {
-    fontFamily: 'Raleway-Bold',
-    fontSize: 32,
+    fontFamily: 'NanumSquareOTF_acEB',
+    fontSize: 25,
     color: color.orange,
   },
   forgetPassword: {
+    fontFamily: 'NanumSquareOTF_acR',
     alignSelf: 'center',
     marginTop: '2%',
+    fontSize: 9,
+    borderBottomColor: color.gray,
+    borderBottomWidth: 1,
+  },
+  snsLogin: {
+    fontFamily: 'NanumSquareOTF_acR',
+    alignSelf: 'center',
+    fontSize: 9,
+    borderBottomColor: color.gray,
   },
 });
 
 const loginComponent = StyleSheet.create({
   input: {
-    marginTop: '2.9%',
+    height: 24,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 6,
+    marginTop: 20,
+    fontSize: 12,
+    color: color.gray,
     borderWidth: 1,
-    borderColor: color.darkGreen,
-    height: '6%',
+    borderColor: color.whiteGray,
+    justifyContent: 'center',
   },
   button: {
-    marginTop: '4.4%',
-    height: '7%',
+    marginTop: 20,
+    height: 24,
     backgroundColor: color.orange,
+    borderWidth: 1,
+    borderColor: color.orange,
   },
   buttonText: {
     alignSelf: 'center',
+    justifyContent: 'center',
     color: '#ffffff',
-    fontSize: 18,
+    fontSize: 12,
+  },
+  snsIcon: {
+    height: 25,
+    flex: 1,
+    // borderWidth: 1,
   },
 });
 
