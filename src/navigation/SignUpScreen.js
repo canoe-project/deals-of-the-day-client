@@ -1,14 +1,29 @@
-import React from 'react';
-import {Text, Button, View} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {Text, TextInput, Button, View} from 'react-native';
+import {AuthContext} from '../store/AuthStore';
 
 const SignUp = ({navigation}) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const {signUp} = useContext(AuthContext);
   return (
     <View>
-      <Text>Test</Text>
+      <TextInput
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
       <Button
         title="Sign Up"
         onPress={() => {
-          navigation.navigate('Home');
+          signUp({username, password});
         }}
       />
     </View>

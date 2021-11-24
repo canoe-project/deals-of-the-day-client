@@ -1,7 +1,7 @@
 import {StyleSheet, PixelRatio} from 'react-native';
 
 const styles = StyleSheet.create({});
-console.log(PixelRatio.getFontScale() * 5);
+
 const color = {
   darkGreen: '#0D3741',
   orange: '#EF840F',
@@ -99,6 +99,7 @@ const loginComponent = StyleSheet.create({
     borderWidth: 1,
     borderColor: color.whiteGray,
     justifyContent: 'center',
+    fontFamily: 'Raleway-Regular',
   },
   button: {
     marginTop: 20,

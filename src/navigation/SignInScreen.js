@@ -1,17 +1,17 @@
-/*react componet*/
+/*import react componet*/
 import React, {useContext, useState} from 'react';
 import {ImageBackground, Button, Text, View, TextInput} from 'react-native';
 
-/*store import*/
+/*import store*/
 import {AuthContext} from '../store/AuthStore';
 
-/*component import*/
+/*import component*/
 import SignButton from '../components/SingButtonComponet';
 
-/*Sytle import*/
+/*import Sytle*/
 import {container, text, loginComponent, image} from '../styles/SignInScreen';
 
-/*image source import*/
+/*import image source*/
 import BackGroundImage from '../assets/image/SignInScrean/Sign_In_Screen_BackGround.png';
 import FacebookIcon from '../assets/icon/SNS_Icons/Facebook_Icon.svg';
 import KakaotalkIcon from '../assets/icon/SNS_Icons/kakaotalk_Icon.svg';

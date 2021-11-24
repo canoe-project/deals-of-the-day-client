@@ -1,12 +1,17 @@
+/*import react components*/
 import React, {useReducer, useMemo, useEffect} from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
+/*import screen*/
 import SplashScreen from './src/navigation/SplashScrean';
 import SignInScreen from './src/navigation/SignInScreen';
 import SignUpScreen from './src/navigation/SignUpScreen';
 import ExploreScreen from './src/navigation/ExploreScreen';
+import MainScreen from './src/navigation/MainScreen';
+
+/*import store*/
 import {AuthContext} from './src/store/AuthStore';
 
 const Stack = createStackNavigator();
@@ -99,13 +104,17 @@ export default function App({navigation}) {
               component={SignInScreen}
               options={{
                 headerShown: false,
-                // When logging out, a pop animation feels intuitive
                 animationTypeForReplace: state.isSignout ? 'pop' : 'push',
               }}
             />
           ) : (
-            // User is signed in
-            <Stack.Screen name="Home" component={ExploreScreen} />
+            <Stack.Screen
+              name="Main"
+              component={MainScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
           )}
         </Stack.Navigator>
       </NavigationContainer>
