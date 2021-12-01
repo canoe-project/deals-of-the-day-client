@@ -1,20 +1,20 @@
 /*import react components*/
 import React, {useReducer, useMemo, useEffect} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
+import {LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 /*import screen*/
 import SplashScreen from './src/navigation/SplashScrean';
 import SignInScreen from './src/navigation/SignInScreen';
-import SignUpScreen from './src/navigation/SignUpScreen';
-import ExploreScreen from './src/navigation/ExploreScreen';
 import MainScreen from './src/navigation/MainScreen';
 
 /*import store*/
 import {AuthContext} from './src/store/AuthStore';
 
 const Stack = createStackNavigator();
+
+LogBox.ignoreLogs(['Remote debugger']);
 
 export default function App({navigation}) {
   const [state, dispatch] = useReducer(
