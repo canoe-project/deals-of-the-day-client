@@ -9,7 +9,7 @@ const color = {
   gray: '#7c7c7c',
 };
 
-const container = StyleSheet.create({
+const containerStyle = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -50,7 +50,7 @@ const container = StyleSheet.create({
     // borderWidth: 1,
   },
 });
-const text = StyleSheet.create({
+const textStyle = StyleSheet.create({
   title: {
     fontFamily: 'BernardMTCondensed',
     color: color.darkGreen,
@@ -87,7 +87,7 @@ const text = StyleSheet.create({
   },
 });
 
-const loginComponent = StyleSheet.create({
+const loginComponentStyle = StyleSheet.create({
   input: {
     height: 24,
     paddingTop: 0,
@@ -121,11 +121,11 @@ const loginComponent = StyleSheet.create({
   },
 });
 
-const image = StyleSheet.create({
+const imageStyle = StyleSheet.create({
   backGround: {
     width: '100%',
     height: '100%',
   },
 });
 export default styles;
-export {container, text, loginComponent, image};
+export {containerStyle, textStyle, loginComponentStyle, imageStyle};

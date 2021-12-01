@@ -2,7 +2,7 @@ import {StyleSheet, PixelRatio} from 'react-native';
 
 const styles = StyleSheet.create({});
 
-const tabBar = StyleSheet.create({
+const tabBarStyle = StyleSheet.create({
   container: {
     alignItems: 'center',
     height: 50,
@@ -12,4 +12,4 @@ const tabBar = StyleSheet.create({
 });
 
 export default styles;
-export {tabBar};
+export {tabBarStyle};

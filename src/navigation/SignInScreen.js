@@ -9,7 +9,12 @@ import {AuthContext} from '../store/AuthStore';
 import SignButton from '../components/SingButtonComponet';
 
 /*import Sytle*/
-import {container, text, loginComponent, image} from '../styles/SignInScreen';
+import {
+  containerStyle,
+  textStyle,
+  loginComponentStyle,
+  imageStyle,
+} from '../styles/SignInScreenStyle';
 
 /*import image source*/
 import BackGroundImage from '../assets/image/SignInScrean/Sign_In_Screen_BackGround.png';
@@ -25,61 +30,64 @@ const SignInScreen = ({navigation}) => {
   const {signIn} = useContext(AuthContext);
 
   return (
-    <View style={container.container}>
-      <View style={container.backGroundContainer}>
+    <View style={containerStyle.container}>
+      <View style={containerStyle.backGroundContainer}>
         <ImageBackground
-          style={image.backGround}
+          style={imageStyle.backGround}
           source={BackGroundImage}
           resizeMode="cover">
-          <View style={container.titleContainer}>
-            <View style={container.mainTitleContainer}>
-              <Text style={text.title}>DEALS OF</Text>
-              <Text style={[text.title, {paddingLeft: 50}]}>THE DAY</Text>
+          <View style={containerStyle.titleContainer}>
+            <View style={containerStyle.mainTitleContainer}>
+              <Text style={textStyle.title}>DEALS OF</Text>
+              <Text style={[textStyle.title, {paddingLeft: 50}]}>THE DAY</Text>
             </View>
-            <View style={container.subtitleContainer}>
-              <Text style={text.subTitleBold}>물건</Text>
-              <Text style={[text.subTitle, {paddingLeft: 3}]}>
+            <View style={containerStyle.subtitleContainer}>
+              <Text style={textStyle.subTitleBold}>물건</Text>
+              <Text style={[textStyle.subTitle, {paddingLeft: 3}]}>
                 을 구매하는 가장 효율적인 방법
               </Text>
             </View>
           </View>
         </ImageBackground>
       </View>
-      <View style={container.loginContainer}>
-        <Text style={text.loginTitle}>로그인</Text>
+      <View style={containerStyle.loginContainer}>
+        <Text style={textStyle.loginTitle}>로그인</Text>
         <TextInput
-          style={loginComponent.input}
+          style={loginComponentStyle.input}
           placeholder="EMAIL ADDRESS"
           value={username}
           onChangeText={setUsername}
         />
         <TextInput
-          style={loginComponent.input}
+          style={loginComponentStyle.input}
           placeholder="PASSWORD"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Text style={text.forgetPassword}>비밀번호를 잃어버렸나요?</Text>
+        <Text style={textStyle.forgetPassword}>비밀번호를 잃어버렸나요?</Text>
         <SignButton
-          textStyle={loginComponent.buttonText}
-          buttonStyle={loginComponent.button}
+          textStyle={loginComponentStyle.buttonText}
+          buttonStyle={loginComponentStyle.button}
           title="Login"
           onPress={() => signIn({username, password})}
         />
         <SignButton
-          textStyle={[loginComponent.buttonText, {color: '#6f7f89'}]}
-          buttonStyle={[loginComponent.button, {backgroundColor: '#ffffff'}]}
+          textStyle={[loginComponentStyle.buttonText, {color: '#6f7f89'}]}
+          buttonStyle={[
+            loginComponentStyle.button,
+            {backgroundColor: '#ffffff'},
+          ]}
           title="Sign Up"
           onPress={() => navigation.navigate('SignUp')}
         />
         <View style={{flexDirection: 'column', marginTop: 70}}>
-          <Text style={[text.snsLogin]}>SNS 로그인</Text>
-          <View style={container.snsContainer}>
-            <FacebookIcon style={loginComponent.snsIcon} />
-            <TwitterIcon style={loginComponent.snsIcon} />
-            <NaverIcon style={loginComponent.snsIcon} />
-            <KakaotalkIcon style={loginComponent.snsIcon} />
+          <Text style={[textStyle.snsLogin]}>SNS 로그인</Text>
+          <View style={containerStyle.snsContainer}>
+            <FacebookIcon style={loginComponentStyle.snsIcon} />
+            <TwitterIcon style={loginComponentStyle.snsIcon} />
+            <NaverIcon style={loginComponentStyle.snsIcon} />
+            <KakaotalkIcon style={loginComponentStyle.snsIcon} />
           </View>
         </View>
       </View>
