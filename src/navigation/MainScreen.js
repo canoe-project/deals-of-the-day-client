@@ -1,6 +1,5 @@
 /*import react component*/
-import React, {useContext, useState} from 'react';
-import {Text, Button, View} from 'react-native';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 /*import screen*/
@@ -17,19 +16,17 @@ import ExploreScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/ExploreScr
 import SearchScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/SearchScreen_ActiveIcon.svg';
 import DealsListScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/DealsListScreen_ActiveIcon.svg';
 
-import {tabBar} from '../styles/TabBar';
+import Header from '../components/Header';
+import {tabBarStyle} from '../styles/TabBarStyle';
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
   return (
     <Tab.Navigator
-      /*탭 라벨을 가립니다.*/
-      tabBarOptions={{
-        showLabel: false,
-      }}
       /*이동하는 스크린의 이름을 확인하고 각 상태에 맞는 탭 아이콘으로 그립니다.*/
       screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarShowLabel: false,
+        tabBarIcon: ({focused}) => {
           if (route.name === 'ExploreScreen') {
             return focused ? (
               <ExploreScreenActiveIcon />
@@ -46,14 +43,12 @@ const MainScreen = () => {
             );
           }
         },
-        tabBarStyle: tabBar.container,
+        tabBarStyle: tabBarStyle.container,
       })}>
       <Tab.Screen
         name="ExploreScreen"
         component={ExploreScreen}
-        options={{
-          headerShown: false,
-        }}
+        options={Header}
       />
       <Tab.Screen
         name="SearchScreen"
@@ -65,10 +60,7 @@ const MainScreen = () => {
       <Tab.Screen
         name="DealsListScreen"
         component={DealsListScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: 'Updates',
-        }}
+        options={Header}
       />
     </Tab.Navigator>
   );
