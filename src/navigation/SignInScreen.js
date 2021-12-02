@@ -1,12 +1,19 @@
 /*import react componet*/
 import React, {useContext, useState} from 'react';
-import {ImageBackground, Button, Text, View, TextInput} from 'react-native';
+import {
+  ImageBackground,
+  Button,
+  Text,
+  View,
+  SafeAreaView,
+  TextInput,
+} from 'react-native';
 
 /*import store*/
 import {AuthContext} from '../store/AuthStore';
 
 /*import component*/
-import SignButton from '../components/SingButtonComponet';
+import SignButtonComponet from '../components/SingButtonComponet';
 
 /*import Sytle*/
 import {
@@ -30,7 +37,7 @@ const SignInScreen = ({navigation}) => {
   const {signIn} = useContext(AuthContext);
 
   return (
-    <View style={containerStyle.container}>
+    <SafeAreaView style={containerStyle.container}>
       <View style={containerStyle.backGroundContainer}>
         <ImageBackground
           style={imageStyle.backGround}
@@ -66,13 +73,13 @@ const SignInScreen = ({navigation}) => {
           secureTextEntry
         />
         <Text style={textStyle.forgetPassword}>비밀번호를 잃어버렸나요?</Text>
-        <SignButton
+        <SignButtonComponet
           textStyle={loginComponentStyle.buttonText}
           buttonStyle={loginComponentStyle.button}
           title="Login"
           onPress={() => signIn({username, password})}
         />
-        <SignButton
+        <SignButtonComponet
           textStyle={[loginComponentStyle.buttonText, {color: '#6f7f89'}]}
           buttonStyle={[
             loginComponentStyle.button,
@@ -91,7 +98,7 @@ const SignInScreen = ({navigation}) => {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

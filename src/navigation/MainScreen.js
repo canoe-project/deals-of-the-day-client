@@ -16,7 +16,7 @@ import ExploreScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/ExploreScr
 import SearchScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/SearchScreen_ActiveIcon.svg';
 import DealsListScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/DealsListScreen_ActiveIcon.svg';
 
-import Header from '../components/Header';
+import HeaderComponent from '../components/HeaderComponent';
 import {tabBarStyle} from '../styles/TabBarStyle';
 const Tab = createBottomTabNavigator();
 
@@ -48,7 +48,7 @@ const MainScreen = () => {
       <Tab.Screen
         name="ExploreScreen"
         component={ExploreScreen}
-        options={Header}
+        options={HeaderComponent}
       />
       <Tab.Screen
         name="SearchScreen"
@@ -60,7 +60,7 @@ const MainScreen = () => {
       <Tab.Screen
         name="DealsListScreen"
         component={DealsListScreen}
-        options={Header}
+        options={HeaderComponent}
       />
     </Tab.Navigator>
   );
