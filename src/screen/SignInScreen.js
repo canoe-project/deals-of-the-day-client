@@ -13,7 +13,7 @@ import {
 import {AuthContext} from '../store/AuthStore';
 
 /*import component*/
-import SignButtonComponet from '../components/SingButtonComponet';
+import {TextPressable} from '../components/CustomPressableComponet';
 
 /*import Sytle*/
 import {
@@ -73,13 +73,13 @@ const SignInScreen = ({navigation}) => {
           secureTextEntry
         />
         <Text style={textStyle.forgetPassword}>비밀번호를 잃어버렸나요?</Text>
-        <SignButtonComponet
+        <TextPressable
           textStyle={loginComponentStyle.buttonText}
           buttonStyle={loginComponentStyle.button}
           title="Login"
           onPress={() => signIn({username, password})}
         />
-        <SignButtonComponet
+        <TextPressable
           textStyle={[loginComponentStyle.buttonText, {color: '#6f7f89'}]}
           buttonStyle={[
             loginComponentStyle.button,

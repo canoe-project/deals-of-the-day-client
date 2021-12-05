@@ -3,9 +3,9 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 /*import screen*/
-import ExploreScreen from './ExploreScreen';
-import SearchScreen from './SearchScreen';
-import DealsListScreen from './DealsListScreen';
+import ExploreNavigation from './ExploreNavigation';
+import SearchScreen from '../screen/SearchScreen';
+import DealsListScreen from './DiscountListNavigation';
 
 /*import Inactive Icon */
 import ExploreScreenIcon from '../assets/icon/bottom_Menu_Icons/ExploreScreen_Icon.svg';
@@ -47,7 +47,7 @@ const MainScreen = () => {
       })}>
       <Tab.Screen
         name="ExploreScreen"
-        component={ExploreScreen}
+        component={ExploreNavigation}
         options={HeaderComponent}
       />
       <Tab.Screen

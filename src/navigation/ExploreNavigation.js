@@ -1,13 +1,16 @@
 import React, {useContext, useState, useEffect} from 'react';
 
-import ExploreTabScreen from './ExploreTabScreen';
-import NewsTabScreen from './NewsTabScreen';
+import ExploreTabNavigation from './ExploreTabNavigation';
+import NewsTabNavigation from './NewsTabNavigation';
 import {Dimensions} from 'react-native';
+
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
+
 const totalWidth = Dimensions.get('screen').width;
-const ExploreScreen = () => {
+
+const ExploreNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -22,13 +25,13 @@ const ExploreScreen = () => {
           left: totalWidth / 8,
         },
       }}>
-      <Tab.Screen name="Explore" component={ExploreTabScreen} />
-      <Tab.Screen name="News" component={NewsTabScreen} />
+      <Tab.Screen name="Explore" component={ExploreTabNavigation} />
+      <Tab.Screen name="News" component={NewsTabNavigation} />
     </Tab.Navigator>
   );
 };
 
-export default ExploreScreen;
+export default ExploreNavigation;
 
 /*참조 자료
 https://velog.io/@7p3m1k/react-native-%ED%83%9C%EA%B7%B8-ScrollView-FlatList

@@ -5,9 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 /*import screen*/
-import SplashScreen from './src/navigation/SplashScrean';
-import SignInScreen from './src/navigation/SignInScreen';
-import MainScreen from './src/navigation/MainScreen';
+import SplashScreen from './src/screen/SplashScrean';
+import SignInScreen from './src/screen/SignInScreen';
+import MainServiceScreen from './src/navigation/MainServiceNavigation';
 
 /*import store*/
 import {AuthContext} from './src/store/AuthStore';
@@ -93,7 +93,7 @@ export default function App({navigation}) {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           {state.isLoading ? (
             // We haven't finished checking for the token yet
             <Stack.Screen name="Splash" component={SplashScreen} />
@@ -103,18 +103,11 @@ export default function App({navigation}) {
               name="SignIn"
               component={SignInScreen}
               options={{
-                headerShown: false,
                 animationTypeForReplace: state.isSignout ? 'pop' : 'push',
               }}
             />
           ) : (
-            <Stack.Screen
-              name="Main"
-              component={MainScreen}
-              options={{
-                headerShown: false,
-              }}
-            />
+            <Stack.Screen name="Main" component={MainServiceScreen} />
           )}
         </Stack.Navigator>
       </NavigationContainer>

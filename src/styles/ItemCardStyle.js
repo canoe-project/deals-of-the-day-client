@@ -1,10 +1,10 @@
-import {StyleSheet, PixelRatio} from 'react-native';
+import {StyleSheet, PixelRatio, Dimensions} from 'react-native';
 
+const totalWidth = Dimensions.get('screen').width;
 const styles = StyleSheet.create({});
 
 const containerStyle = StyleSheet.create({
   container: {
-    height: 262,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#ffffff',
@@ -36,6 +36,28 @@ const containerStyle = StyleSheet.create({
     position: 'absolute',
     top: 20,
     zIndex: 1,
+  },
+  detailcontainer: {
+    bottom: 8,
+    position: 'relative',
+    borderRadius: 8,
+    zIndex: 1,
+    backgroundColor: '#ffffff',
+  },
+  shopListContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    marginTop: 50,
+  },
+  shopItemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 50,
+    marginBottom: 8,
+    marginRight: 18,
+    marginLeft: 18,
   },
 });
 
@@ -74,11 +96,20 @@ const iconsStyle = StyleSheet.create({
 
 const imageStyle = StyleSheet.create({
   productImage: {
-    height: '75%',
+    height: (totalWidth * 9) / 16,
     width: '100%',
     borderRadius: 4,
   },
 });
 
+const buttonStyle = StyleSheet.create({
+  defaultButtton: {
+    height: 25,
+    width: 25,
+    marginLeft: 8,
+    alignSelf: 'flex-end',
+  },
+});
+
 export default styles;
-export {containerStyle, textStyle, iconsStyle, imageStyle};
+export {containerStyle, textStyle, iconsStyle, imageStyle, buttonStyle};
