@@ -1,12 +1,14 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {AuthContext} from '../store/AuthStore';
 import {FlatList, SafeAreaView, Button} from 'react-native';
-import {renderItem} from '../components/ItemCardComponent';
+import {ItemCard} from '../components/ItemCardComponent';
+import {productState, productDispatch} from '../store/productStore';
 
 const ExploreTab = ({navigation}) => {
   /*logout useContext*/
   // const {signOut} = useContext(AuthContext);
-  const [data, setData] = useState([]);
+  const {infoFindAll, testInfoFindAll} = productDispatch();
+  const pstate = productState();
 
   /*loading state*/
   // const [offset, setOffset] = useState(0);
@@ -14,33 +16,23 @@ const ExploreTab = ({navigation}) => {
 
   /*demo data*/
   useEffect(() => {
-    setData([
-      {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        productImage: {uri: 'https://picsum.photos/200'},
-        productName: 'productName',
-        productPrice: '100000',
-        save: '22',
-        discountRate: '100',
-      },
-      {
-        id: 'bd7acbea-c1b1-46c2-aasdd5-3ad53abb28ba',
-        productImage: {uri: 'https://picsum.photos/200'},
-        productName: 'productName',
-        productPrice: '100000',
-        save: '22',
-        discountRate: '100',
-      },
-      {
-        id: 'bd7acbea-c1b1-46c2-aasdd5-3ad53abb28ba',
-        productImage: {uri: 'https://picsum.photos/200'},
-        productName: 'productName',
-        productPrice: '100000',
-        save: '22',
-        discountRate: '100',
-      },
-    ]);
+    // infoFindAll();
+    testInfoFindAll();
   }, []);
+  const renderItem = ({item}) => {
+    return (
+      <ItemCard
+        productImage={{uri: `https:${item.img}`}}
+        productName={item.name}
+        productPrice={item.price}
+        save={0}
+        discountRate={0}
+        onPress={() => {
+          navigation.push('DiscountDetail', {pcode: item.pcode});
+        }}
+      />
+    );
+  };
 
   return (
     <SafeAreaView
@@ -48,11 +40,7 @@ const ExploreTab = ({navigation}) => {
         flex: 1,
         backgroundColor: '#F2F4F9',
       }}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <FlatList data={pstate} renderItem={renderItem} />
     </SafeAreaView>
   );
 };

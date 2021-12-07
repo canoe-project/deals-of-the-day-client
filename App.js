@@ -91,26 +91,26 @@ export default function App({navigation}) {
     [],
   );
   return (
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          {state.isLoading ? (
-            // We haven't finished checking for the token yet
-            <Stack.Screen name="Splash" component={SplashScreen} />
-          ) : state.userToken == null ? (
-            // No token found, user isn't signed in
-            <Stack.Screen
-              name="SignIn"
-              component={SignInScreen}
-              options={{
-                animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-              }}
-            />
-          ) : (
-            <Stack.Screen name="Main" component={MainServiceScreen} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthContext.Provider>
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            {state.isLoading ? (
+              // We haven't finished checking for the token yet
+              <Stack.Screen name="Splash" component={SplashScreen} />
+            ) : state.userToken == null ? (
+              // No token found, user isn't signed in
+              <Stack.Screen
+                name="SignIn"
+                component={SignInScreen}
+                options={{
+                  animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+                }}
+              />
+            ) : (
+              <Stack.Screen name="Main" component={MainServiceScreen} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AuthContext.Provider>
   );
 }

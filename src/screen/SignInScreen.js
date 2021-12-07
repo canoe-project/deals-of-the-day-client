@@ -86,7 +86,6 @@ const SignInScreen = ({navigation}) => {
             {backgroundColor: '#ffffff'},
           ]}
           title="Sign Up"
-          onPress={() => navigation.navigate('SignUp')}
         />
         <View style={{flexDirection: 'column', marginTop: 70}}>
           <Text style={[textStyle.snsLogin]}>SNS 로그인</Text>

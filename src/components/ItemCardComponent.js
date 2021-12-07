@@ -31,13 +31,10 @@ import discount_ActiveIcon from '../assets/icon/Exprore_Icons/discount_ActiveIco
 import {ImagePressable} from './CustomPressableComponet';
 
 const ItemCard = props => {
-  const {productImage, productName, productPrice, save, discountRate} = props;
+  const {productImage, productName, productPrice, save, discountRate, onPress} =
+    props;
   return (
-    <Pressable
-      style={containerStyle.container}
-      onPress={() => {
-        alert('test');
-      }}>
+    <Pressable style={containerStyle.container} onPress={onPress}>
       <View style={containerStyle.discountRate}>
         <Text style={textStyle.discountRateText}>{discountRate}%</Text>
       </View>
@@ -134,15 +131,38 @@ const ShopItem = props => {
     </View>
   );
 };
-const renderItem = ({item}) => (
-  <ItemCard
-    productImage={item.productImage}
-    productName={item.productName}
-    productPrice={item.productPrice}
-    save={item.save}
-    discountRate={item.discountRate}
-  />
-);
+
+const testItemCard = props => {
+  const {productImage, productName, productPrice, save, shopData} = props;
+  return (
+    <View>
+      <Image
+        style={[imageStyle.productImage, {borderRadius: 0}]}
+        source={productImage}></Image>
+      <View style={containerStyle.detailcontainer}>
+        <View style={[containerStyle.descriptionContainer]}>
+          <View style={containerStyle.productDescriptions}>
+            <Text style={textStyle.productName}>{productName}</Text>
+            <Text style={textStyle.productPrice}>{productPrice} 원</Text>
+          </View>
+          <View
+            style={[
+              containerStyle.productDescriptions,
+              {justifyContent: 'flex-start'},
+            ]}>
+            <ImagePressable image={SaveIcon} Imagestyle={iconsStyle.saveIcon} />
+            <Text style={textStyle.save}>{save} save</Text>
+          </View>
+        </View>
+        <View style={containerStyle.shopListContainer}>
+          {shopData.map(item => {
+            return <ShopItem name={item.name} price={item.price} />;
+          })}
+        </View>
+      </View>
+    </View>
+  );
+};
 
 export default ItemCard;
-export {renderItem, ItemCard, DetailItemCard};
+export {ItemCard, DetailItemCard};

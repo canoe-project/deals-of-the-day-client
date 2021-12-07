@@ -18,6 +18,7 @@ import DealsListScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/DealsLis
 
 import HeaderComponent from '../components/HeaderComponent';
 import {tabBarStyle} from '../styles/TabBarStyle';
+
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {

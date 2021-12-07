@@ -1,8 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {Pressable, SafeAreaView, View, Image, ScrollView} from 'react-native';
 import {DetailItemCard} from '../components/ItemCardComponent';
+import {productState, productDispatch} from '../store/productStore';
 
 const DiscountDetailsScreen = ({route, navigation}) => {
+  const {pcode} = route.params;
   const testData = {
     id: 'bd7acbea-c1b1-46c2-aasdd5-3ad53abb28ba',
     productImage: {uri: 'https://picsum.photos/200'},
