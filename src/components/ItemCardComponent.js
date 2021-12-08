@@ -81,7 +81,7 @@ const DetailItemCard = props => {
         </View>
         <View style={containerStyle.shopListContainer}>
           {shopData.map(item => {
-            return <ShopItem name={item.name} price={item.price} />;
+            return <ShopItem mallImg={item.mallImg} price={item.price} />;
           })}
         </View>
       </View>
@@ -90,33 +90,37 @@ const DetailItemCard = props => {
 };
 
 const ShopItem = props => {
-  const {name, price} = props;
-  const [icon, setIcon] = useState({});
+  const {mallImg, price} = props;
+  // const [icon, setIcon] = useState({});
 
-  useEffect(() => {
-    switch (name) {
-      case 'elevenst':
-        setIcon(Elevenst_Icon);
-        break;
-      case 'coupang':
-        setIcon(Coupang_Icon);
-        break;
-      case 'lotteon':
-        setIcon(Lotteon_Icon);
-        break;
-      case 'ssg':
-        setIcon(Ssg_Icon);
-        break;
-      default:
-        //디폴트 이미지로 이후 수정
-        setIcon(Elevenst_Icon);
-        break;
-    }
-  }, []);
+  // useEffect(() => {
+  //   switch (name) {
+  //     case 'elevenst':
+  //       setIcon(Elevenst_Icon);
+  //       break;
+  //     case 'coupang':
+  //       setIcon(Coupang_Icon);
+  //       break;
+  //     case 'lotteon':
+  //       setIcon(Lotteon_Icon);
+  //       break;
+  //     case 'ssg':
+  //       setIcon(Ssg_Icon);
+  //       break;
+  //     default:
+  //       //디폴트 이미지로 이후 수정
+  //       setIcon(Elevenst_Icon);
+  //       break;
+  //   }
+  // }, []);
 
   return (
     <View style={containerStyle.shopItemContainer}>
-      <Image source={icon} />
+      <Image
+        style={{height: 25, width: 50}}
+        source={{uri: `https:${mallImg}`}}
+        resizeMode={'contain'}
+      />
       <Text>{price}</Text>
       <View style={{flexDirection: 'row'}}>
         <ImagePressable

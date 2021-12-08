@@ -28,7 +28,7 @@ const ExploreTab = ({navigation}) => {
         save={0}
         discountRate={0}
         onPress={() => {
-          navigation.push('DiscountDetail', {pcode: item.pcode});
+          navigation.push('DiscountDetail', {item});
         }}
       />
     );

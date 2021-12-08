@@ -19,51 +19,61 @@ import DealsListScreenActiveIcon from '../assets/icon/bottom_Menu_Icons/DealsLis
 import HeaderComponent from '../components/HeaderComponent';
 import {tabBarStyle} from '../styles/TabBarStyle';
 
+import {ProductSearchProvider} from '../store/productSearchStore';
+import {MalllistProvider} from '../store/mailListStore';
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
   return (
-    <Tab.Navigator
-      /*이동하는 스크린의 이름을 확인하고 각 상태에 맞는 탭 아이콘으로 그립니다.*/
-      screenOptions={({route}) => ({
-        tabBarShowLabel: false,
-        tabBarIcon: ({focused}) => {
-          if (route.name === 'ExploreScreen') {
-            return focused ? (
-              <ExploreScreenActiveIcon />
-            ) : (
-              <ExploreScreenIcon />
-            );
-          } else if (route.name === 'SearchScreen') {
-            return focused ? <SearchScreenActiveIcon /> : <SearchScreenIcon />;
-          } else if (route.name === 'DealsListScreen') {
-            return focused ? (
-              <DealsListScreenActiveIcon />
-            ) : (
-              <DealsListScreenIcon />
-            );
-          }
-        },
-        tabBarStyle: tabBarStyle.container,
-      })}>
-      <Tab.Screen
-        name="ExploreScreen"
-        component={ExploreNavigation}
-        options={HeaderComponent}
-      />
-      <Tab.Screen
-        name="SearchScreen"
-        component={SearchScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="DealsListScreen"
-        component={DealsListScreen}
-        options={HeaderComponent}
-      />
-    </Tab.Navigator>
+    <MalllistProvider>
+      <ProductSearchProvider>
+        <Tab.Navigator
+          /*이동하는 스크린의 이름을 확인하고 각 상태에 맞는 탭 아이콘으로 그립니다.*/
+          screenOptions={({route}) => ({
+            tabBarShowLabel: false,
+            tabBarIcon: ({focused}) => {
+              if (route.name === 'ExploreScreen') {
+                return focused ? (
+                  <ExploreScreenActiveIcon />
+                ) : (
+                  <ExploreScreenIcon />
+                );
+              } else if (route.name === 'SearchScreen') {
+                return focused ? (
+                  <SearchScreenActiveIcon />
+                ) : (
+                  <SearchScreenIcon />
+                );
+              } else if (route.name === 'DealsListScreen') {
+                return focused ? (
+                  <DealsListScreenActiveIcon />
+                ) : (
+                  <DealsListScreenIcon />
+                );
+              }
+            },
+            tabBarStyle: tabBarStyle.container,
+          })}>
+          <Tab.Screen
+            name="ExploreScreen"
+            component={ExploreNavigation}
+            options={HeaderComponent}
+          />
+          <Tab.Screen
+            name="SearchScreen"
+            component={SearchScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Tab.Screen
+            name="DealsListScreen"
+            component={DealsListScreen}
+            options={HeaderComponent}
+          />
+        </Tab.Navigator>
+      </ProductSearchProvider>
+    </MalllistProvider>
   );
 };
 
