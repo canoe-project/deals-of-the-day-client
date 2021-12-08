@@ -27,7 +27,14 @@ export function ProductSearchProvider({children}) {
     }),
     [],
   );
-  const [state, dispatch] = useReducer(reducer);
+  const [state, dispatch] = useReducer(reducer, [
+    {
+      name: '',
+      pcode: '',
+      price: '',
+      img: '',
+    },
+  ]);
 
   return (
     <ProductSearchStateContext.Provider value={state}>

@@ -20,7 +20,7 @@ import HeaderComponent from '../components/HeaderComponent';
 import {tabBarStyle} from '../styles/TabBarStyle';
 
 import {ProductSearchProvider} from '../store/productSearchStore';
-import {MalllistProvider} from '../store/mailListStore';
+import {MalllistProvider} from '../store/mallListStore';
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
