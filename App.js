@@ -11,7 +11,8 @@ import MainServiceScreen from './src/navigation/MainServiceNavigation';
 
 /*import store*/
 import {AuthContext} from './src/store/AuthStore';
-
+import DiscountDetailsScreen from './src/screen/DiscountDetailScreen';
+import {MalllistProvider} from './src/store/mallListStore';
 const Stack = createStackNavigator();
 
 LogBox.ignoreLogs(['Remote debugger']);
@@ -91,9 +92,10 @@ export default function App({navigation}) {
     [],
   );
   return (
-      <AuthContext.Provider value={authContext}>
+    <AuthContext.Provider value={authContext}>
+      <MalllistProvider>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Navigator>
             {state.isLoading ? (
               // We haven't finished checking for the token yet
               <Stack.Screen name="Splash" component={SplashScreen} />
@@ -103,14 +105,26 @@ export default function App({navigation}) {
                 name="SignIn"
                 component={SignInScreen}
                 options={{
+                  headerShown: false,
                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
                 }}
               />
             ) : (
-              <Stack.Screen name="Main" component={MainServiceScreen} />
+              <Stack.Group>
+                <Stack.Screen
+                  name="Main"
+                  component={MainServiceScreen}
+                  options={{headerShown: false}}
+                />
+                <Stack.Screen
+                  name="DiscountDetail"
+                  component={DiscountDetailsScreen}
+                />
+              </Stack.Group>
             )}
           </Stack.Navigator>
         </NavigationContainer>
-      </AuthContext.Provider>
+      </MalllistProvider>
+    </AuthContext.Provider>
   );
 }

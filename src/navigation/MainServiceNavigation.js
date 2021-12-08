@@ -25,7 +25,6 @@ const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
   return (
-    <MalllistProvider>
       <ProductSearchProvider>
         <Tab.Navigator
           /*이동하는 스크린의 이름을 확인하고 각 상태에 맞는 탭 아이콘으로 그립니다.*/
@@ -73,7 +72,6 @@ const MainScreen = () => {
           />
         </Tab.Navigator>
       </ProductSearchProvider>
-    </MalllistProvider>
   );
 };
 

@@ -19,7 +19,11 @@ const ExploreTabNavigation = () => {
         {/* discount list screen */}
         <Stack.Screen name="ExploreTab" component={ExploreTab} />
         {/* discount detail screen */}
-        <Stack.Screen name="DiscountDetail" component={DiscountDetail} />
+        {/* <Stack.Screen
+          name="DiscountDetail"
+          component={DiscountDetail}
+          screenOptions={{headerMode: 'none'}}
+        /> */}
       </Stack.Navigator>
     </ProductProvider>
   );
