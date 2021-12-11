@@ -7,6 +7,7 @@ import {
   View,
   SafeAreaView,
   TextInput,
+  ScrollView,
 } from 'react-native';
 
 /*import store*/
@@ -37,7 +38,7 @@ const SignInScreen = ({navigation}) => {
   const {signIn} = useContext(AuthContext);
 
   return (
-    <SafeAreaView style={containerStyle.container}>
+    <ScrollView style={containerStyle.container}>
       <View style={containerStyle.backGroundContainer}>
         <ImageBackground
           style={imageStyle.backGround}
@@ -97,7 +98,7 @@ const SignInScreen = ({navigation}) => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

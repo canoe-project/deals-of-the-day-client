@@ -9,6 +9,7 @@ const DiscountDetailsScreen = ({route, navigation}) => {
   const state = malllistState();
 
   useEffect(async () => {
+    await navigation.setOptions({title: item.name});
     await mallFindAll(item.pcode);
   }, []);
 

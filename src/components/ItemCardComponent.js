@@ -1,13 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {
-  View,
-  Pressable,
-  Image,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import {View, Pressable, Image, Text, Share} from 'react-native';
 import {
   containerStyle,
   textStyle,
@@ -18,11 +10,6 @@ import {
 
 import defaultImage from '../assets/image/Explore/defaultImage.png';
 import SaveIcon from '../assets/icon/Exprore_Icons/save_Icon.png';
-
-import Coupang_Icon from '../assets/icon/Shop_Icon/Coupang_Icon.png';
-import Elevenst_Icon from '../assets/icon/Shop_Icon/Elevenst_Icon.png';
-import Lotteon_Icon from '../assets/icon/Shop_Icon/Lotteon_Icon.png';
-import Ssg_Icon from '../assets/icon/Shop_Icon/Ssg_Icon.png';
 
 import discount_Icon from '../assets/icon/Exprore_Icons/discount_Icon.png';
 import Share_Icon from '../assets/icon/Exprore_Icons/share_Icon.png';
@@ -81,7 +68,13 @@ const DetailItemCard = props => {
         </View>
         <View style={containerStyle.shopListContainer}>
           {shopData.map(item => {
-            return <ShopItem mallImg={item.mallImg} price={item.price} />;
+            return (
+              <ShopItem
+                mallImg={item.mallImg}
+                price={item.price}
+                link={item.link}
+              />
+            );
           })}
         </View>
       </View>
@@ -90,30 +83,26 @@ const DetailItemCard = props => {
 };
 
 const ShopItem = props => {
-  const {mallImg, price} = props;
-  // const [icon, setIcon] = useState({});
-
-  // useEffect(() => {
-  //   switch (name) {
-  //     case 'elevenst':
-  //       setIcon(Elevenst_Icon);
-  //       break;
-  //     case 'coupang':
-  //       setIcon(Coupang_Icon);
-  //       break;
-  //     case 'lotteon':
-  //       setIcon(Lotteon_Icon);
-  //       break;
-  //     case 'ssg':
-  //       setIcon(Ssg_Icon);
-  //       break;
-  //     default:
-  //       //디폴트 이미지로 이후 수정
-  //       setIcon(Elevenst_Icon);
-  //       break;
-  //   }
-  // }, []);
-
+  const {mallImg, price, link} = props;
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: link,
+        uri: link,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <View style={containerStyle.shopItemContainer}>
       <Image
@@ -123,9 +112,11 @@ const ShopItem = props => {
       />
       <Text>{price}</Text>
       <View style={{flexDirection: 'row'}}>
+        {/* 공유 버튼 누르는 시간동안은 백그라운드 색상을 변경 */}
         <ImagePressable
           image={Share_Icon}
           imageStyle={buttonStyle.defaultButtton}
+          onPress={onShare}
         />
         <ImagePressable
           image={discount_Icon}
@@ -136,37 +127,49 @@ const ShopItem = props => {
   );
 };
 
-const testItemCard = props => {
-  const {productImage, productName, productPrice, save, shopData} = props;
+const FavoritetItemCard = props => {
+  const {productImage, productName, productPrice, mallImg, onPress} = props;
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: link,
+        uri: link,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <View>
-      <Image
-        style={[imageStyle.productImage, {borderRadius: 0}]}
-        source={productImage}></Image>
-      <View style={containerStyle.detailcontainer}>
-        <View style={[containerStyle.descriptionContainer]}>
-          <View style={containerStyle.productDescriptions}>
-            <Text style={textStyle.productName}>{productName}</Text>
-            <Text style={textStyle.productPrice}>{productPrice} 원</Text>
-          </View>
-          <View
-            style={[
-              containerStyle.productDescriptions,
-              {justifyContent: 'flex-start'},
-            ]}>
-            <ImagePressable image={SaveIcon} Imagestyle={iconsStyle.saveIcon} />
-            <Text style={textStyle.save}>{save} save</Text>
-          </View>
-        </View>
-        <View style={containerStyle.shopListContainer}>
-          {shopData.map(item => {
-            return <ShopItem name={item.name} price={item.price} />;
-          })}
-        </View>
+      <Image source={{uri: `https:${productImage}`}} />
+      {/* 상품 설명*/}
+      <View>
+        <Text>{productName}</Text>
+        <Image source={{uri: `https:${mallImg}`}} />
+        <Text>{productPrice}</Text>
       </View>
+      <ImagePressable
+        image={Share_Icon}
+        imageStyle={buttonStyle.defaultButtton}
+        onPress={onShare}
+      />
+      <ImagePressable
+        image={discount_Icon}
+        imageStyle={buttonStyle.defaultButtton}
+      />
     </View>
   );
 };
 
 export default ItemCard;
-export {ItemCard, DetailItemCard};
+export {ItemCard, DetailItemCard, FavoritetItemCard};

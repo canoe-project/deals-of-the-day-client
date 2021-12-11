@@ -59,6 +59,12 @@ const containerStyle = StyleSheet.create({
     marginRight: 18,
     marginLeft: 18,
   },
+
+  FavoritetItemContainer: {
+    marginTop: 24,
+    marginLeft: 24,
+    marginRight: 24,
+  },
 });
 
 const textStyle = StyleSheet.create({

@@ -12,7 +12,8 @@ import MainServiceScreen from './src/navigation/MainServiceNavigation';
 /*import store*/
 import {AuthContext} from './src/store/AuthStore';
 import DiscountDetailsScreen from './src/screen/DiscountDetailScreen';
-import {MalllistProvider} from './src/store/mallListStore';
+import {MalllistProvider, malllistState} from './src/store/mallListStore';
+
 const Stack = createStackNavigator();
 
 LogBox.ignoreLogs(['Remote debugger']);
@@ -119,6 +120,7 @@ export default function App({navigation}) {
                 <Stack.Screen
                   name="DiscountDetail"
                   component={DiscountDetailsScreen}
+                  options={{title: 'My home'}}
                 />
               </Stack.Group>
             )}

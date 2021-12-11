@@ -18,7 +18,7 @@ const containerStyle = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   backGroundContainer: {
-    flex: 0.43,
+    height: 270,
   },
   loginContainer: {
     flex: 0.57,
