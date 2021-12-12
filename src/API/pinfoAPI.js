@@ -1,12 +1,12 @@
 import Axios from '../utils/http-common';
 
 const productInfoFindOne = async id => {
-  await Axios({
+  return await Axios({
     url: `/pinfo/${id}`,
     method: 'GET',
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data[0]);
     })
     .catch(error => {
       return error;

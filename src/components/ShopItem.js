@@ -5,12 +5,13 @@ import {containerStyle, buttonStyle} from '../styles/ItemCardStyle';
 import discount_Icon from '../assets/icon/Exprore_Icons/discount_Icon.png';
 import Share_Icon from '../assets/icon/Exprore_Icons/share_Icon.png';
 import discount_ActiveIcon from '../assets/icon/Exprore_Icons/discount_ActiveIcon.png';
-
+import {favoriteAdd} from '../API/favoriteAPI';
+import {AuthState} from '../store/AuthStore';
 import {ImagePressable} from './CustomPressableComponet';
 
 const ShopItem = props => {
-  const {mallImg, price, link} = props;
-
+  const {mallImg, price, link, pcode} = props;
+  const authstate = useContext(AuthState);
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -29,7 +30,7 @@ const ShopItem = props => {
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
   return (
     <View style={containerStyle.shopItemContainer}>
@@ -49,6 +50,9 @@ const ShopItem = props => {
         <ImagePressable
           image={discount_Icon}
           imageStyle={buttonStyle.defaultButtton}
+          onPress={() => {
+            favoriteAdd(pcode, authstate.userToken);
+          }}
         />
       </View>
     </View>

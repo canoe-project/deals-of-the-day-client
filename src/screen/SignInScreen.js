@@ -1,5 +1,5 @@
 /*import react componet*/
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
   ImageBackground,
   Button,
@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 /*import store*/
-import {AuthContext} from '../store/AuthStore';
+import {AuthDispatch} from '../store/AuthStore';
 
 /*import component*/
 import {TextPressable} from '../components/CustomPressableComponet';
@@ -32,10 +32,14 @@ import NaverIcon from '../assets/icon/SNS_Icons/Naver_Icon.svg';
 import TwitterIcon from '../assets/icon/SNS_Icons/Twitter_Icon.svg';
 
 const SignInScreen = ({navigation}) => {
-  const [username, setUsername] = useState('');
+  const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {signIn} = useContext(AuthContext);
+  useEffect(() => {
+    setemail('test3@test.com');
+    setPassword('test_pw3');
+  }, []);
+  const {signIn} = useContext(AuthDispatch);
 
   return (
     <ScrollView style={containerStyle.container}>
@@ -63,8 +67,8 @@ const SignInScreen = ({navigation}) => {
         <TextInput
           style={loginComponentStyle.input}
           placeholder="EMAIL ADDRESS"
-          value={username}
-          onChangeText={setUsername}
+          value={email}
+          onChangeText={setemail}
         />
         <TextInput
           style={loginComponentStyle.input}
@@ -78,7 +82,9 @@ const SignInScreen = ({navigation}) => {
           textStyle={loginComponentStyle.buttonText}
           buttonStyle={loginComponentStyle.button}
           title="Login"
-          onPress={() => signIn({username, password})}
+          onPress={() => {
+            signIn({email, password});
+          }}
         />
         <TextPressable
           textStyle={[loginComponentStyle.buttonText, {color: '#6f7f89'}]}

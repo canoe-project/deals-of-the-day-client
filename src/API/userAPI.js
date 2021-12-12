@@ -1,8 +1,8 @@
 import Axios from '../utils/http-common';
 
 const userCreate = async (name, nickname, email, password) => {
-  await Axios({
-    url: '/user/',
+  return await Axios({
+    url: '/users/',
     method: 'POST',
     data: {
       name: name,
@@ -12,7 +12,7 @@ const userCreate = async (name, nickname, email, password) => {
     },
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
@@ -20,8 +20,8 @@ const userCreate = async (name, nickname, email, password) => {
 };
 
 const login = async (email, password) => {
-  await Axios({
-    url: `/user/${email}`,
+  return await Axios({
+    url: `/users/`,
     method: 'POST',
     data: {
       email: email,
@@ -29,7 +29,7 @@ const login = async (email, password) => {
     },
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
@@ -37,12 +37,12 @@ const login = async (email, password) => {
 };
 
 const userFind = async email => {
-  await Axios({
-    url: `/user/${email}`,
+  return await Axios({
+    url: `/users/${email}`,
     method: 'GET',
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
@@ -50,12 +50,12 @@ const userFind = async email => {
 };
 
 const userDelete = async id => {
-  await Axios({
-    url: `/user/${id}`,
+  return await Axios({
+    url: `/users/${id}`,
     method: 'DELETE',
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
@@ -63,8 +63,8 @@ const userDelete = async id => {
 };
 
 const userUpdate = async (name, nickname, email, password) => {
-  await Axios({
-    url: `/user/${id}`,
+  return await Axios({
+    url: `/users/${id}`,
     method: 'PUT',
     data: {
       name: name,
@@ -74,7 +74,7 @@ const userUpdate = async (name, nickname, email, password) => {
     },
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;

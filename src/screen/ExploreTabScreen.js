@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {AuthContext} from '../store/AuthStore';
+import {AuthDispatch} from '../store/AuthStore';
 import {FlatList, SafeAreaView, Button} from 'react-native';
 import {ItemCard} from '../components/ItemCardComponent';
 import {productState, productDispatch} from '../store/productStore';

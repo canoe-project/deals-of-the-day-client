@@ -11,8 +11,6 @@ export function ProductProvider({children}) {
         return action.result;
       case 'userFindOne':
         return action.result;
-      case 'addFavorite':
-        return action.result;
       default:
         throw new Error(`Unhandled action type: ${action.type}`);
     }

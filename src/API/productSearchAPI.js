@@ -1,12 +1,12 @@
 import Axios from '../utils/http-common';
 
 const productSearch = async productName => {
-  await Axios({
+  return await Axios({
     url: `/productsearch/${productName}`,
     method: 'GET',
   })
     .then(async result => {
-      return await result.data;
+      return JSON.stringify(result.data[0]);
     })
     .catch(async error => {
       return await error;

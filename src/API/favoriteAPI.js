@@ -1,7 +1,7 @@
 import Axios from '../utils/http-common';
 
-const favoriteAdd = async pcode => {
-  await Axios({
+const favoriteAdd = async (pcode, email) => {
+  return await Axios({
     url: '/favorite/',
     method: 'POST',
     data: {
@@ -10,14 +10,14 @@ const favoriteAdd = async pcode => {
     },
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
     });
 };
 const favoriteDelete = async pcode => {
-  await Axios({
+  return await Axios({
     url: '/favorite/',
     method: 'DELETE',
     data: {
@@ -26,22 +26,22 @@ const favoriteDelete = async pcode => {
     },
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
     });
 };
 const favoriteRead = async pcode => {
-  await Axios({
+  return await Axios({
     url: '/favorite/',
-    method: 'DELETE',
+    method: 'GET',
   })
-    .then(result => {
-      return result;
+    .then(async result => {
+      return JSON.stringify(result.data);
     })
-    .catch(error => {
-      return error;
+    .catch(async error => {
+      return await error;
     });
 };
 

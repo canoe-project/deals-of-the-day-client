@@ -1,13 +1,13 @@
 import Axios from '../utils/http-common';
 
 const mallList = async pcode => {
-  await Axios({
+  return await Axios({
     url: `/malllist/${pcode}`,
     method: 'GET',
   })
     .then(({data}) => {
       console.log(data);
-      return data.json();
+      return JSON.stringify(result.data);
     })
     .catch(async error => {
       return await error;

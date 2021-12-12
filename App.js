@@ -10,10 +10,10 @@ import SignInScreen from './src/screen/SignInScreen';
 import MainServiceScreen from './src/navigation/MainServiceNavigation';
 
 /*import store*/
-import {AuthContext} from './src/store/AuthStore';
+import {AuthDispatch, AuthState} from './src/store/AuthStore';
 import DiscountDetailsScreen from './src/screen/DiscountDetailScreen';
 import {MalllistProvider, malllistState} from './src/store/mallListStore';
-
+import {login, userCreate} from './src/API/userAPI';
 const Stack = createStackNavigator();
 
 LogBox.ignoreLogs(['Remote debugger']);
@@ -73,12 +73,14 @@ export default function App({navigation}) {
   const authContext = useMemo(
     () => ({
       signIn: async data => {
-        // In a production app, we need to send some data (usually username, password) to server and get a token
-        // We will also need to handle errors if sign in failed
-        // After getting token, we need to persist the token using `SecureStore`
-        // In the example, we'll use a dummy token
-
-        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
+        console.log(data.email);
+        await login(data.email, data.password)
+          .then(reesult => {
+            dispatch({type: 'SIGN_IN', token: data.email});
+          })
+          .catch(() => {
+            console.log('login fail');
+          });
       },
       signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async data => {
@@ -93,40 +95,42 @@ export default function App({navigation}) {
     [],
   );
   return (
-    <AuthContext.Provider value={authContext}>
-      <MalllistProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {state.isLoading ? (
-              // We haven't finished checking for the token yet
-              <Stack.Screen name="Splash" component={SplashScreen} />
-            ) : state.userToken == null ? (
-              // No token found, user isn't signed in
-              <Stack.Screen
-                name="SignIn"
-                component={SignInScreen}
-                options={{
-                  headerShown: false,
-                  animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-                }}
-              />
-            ) : (
-              <Stack.Group>
+    <AuthState.Provider value={state}>
+      <AuthDispatch.Provider value={authContext}>
+        <MalllistProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {state.isLoading ? (
+                // We haven't finished checking for the token yet
+                <Stack.Screen name="Splash" component={SplashScreen} />
+              ) : state.userToken == null ? (
+                // No token found, user isn't signed in
                 <Stack.Screen
-                  name="Main"
-                  component={MainServiceScreen}
-                  options={{headerShown: false}}
+                  name="SignIn"
+                  component={SignInScreen}
+                  options={{
+                    headerShown: false,
+                    animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+                  }}
                 />
-                <Stack.Screen
-                  name="DiscountDetail"
-                  component={DiscountDetailsScreen}
-                  options={{title: 'My home'}}
-                />
-              </Stack.Group>
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </MalllistProvider>
-    </AuthContext.Provider>
+              ) : (
+                <Stack.Group>
+                  <Stack.Screen
+                    name="Main"
+                    component={MainServiceScreen}
+                    options={{headerShown: false}}
+                  />
+                  <Stack.Screen
+                    name="DiscountDetail"
+                    component={DiscountDetailsScreen}
+                    options={{title: ''}}
+                  />
+                </Stack.Group>
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </MalllistProvider>
+      </AuthDispatch.Provider>
+    </AuthState.Provider>
   );
 }

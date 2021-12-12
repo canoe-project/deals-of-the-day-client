@@ -1,24 +1,24 @@
 import Axios from '../utils/http-common';
 
 const productFindAll = async () => {
-  await Axios({
+  return await Axios({
     url: '/info/',
     method: 'GET',
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;
     });
 };
 const productFindOne = async id => {
-  await Axios({
+  return await Axios({
     url: `/info/${id}`,
     method: 'GET',
   })
     .then(result => {
-      return result;
+      return JSON.stringify(result.data);
     })
     .catch(error => {
       return error;

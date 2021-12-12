@@ -1,26 +1,24 @@
-import React, {useContext, useState, useEffect, useReducer} from 'react';
+import React, {useContext, useState, useEffect, useCallback} from 'react';
 import {View, Pressable, Image, Text, Share} from 'react-native';
+import {
+  containerStyle,
+  textStyle,
+  iconsStyle,
+  imageStyle,
+  buttonStyle,
+} from '../styles/ItemCardStyle';
 
 import defaultImage from '../assets/image/Explore/defaultImage.png';
+import SaveIcon from '../assets/icon/Exprore_Icons/save_Icon.png';
+
 import discount_Icon from '../assets/icon/Exprore_Icons/discount_Icon.png';
 import Share_Icon from '../assets/icon/Exprore_Icons/share_Icon.png';
 import discount_ActiveIcon from '../assets/icon/Exprore_Icons/discount_ActiveIcon.png';
 
 import {ImagePressable} from './CustomPressableComponet';
 
-import {favoriteRead} from '../API/favoriteAPI';
-
 const FavoritetItemCard = React.memo(props => {
-  const {
-    productImage,
-    productName,
-    productPrice,
-    mallImg,
-    onPress,
-    mallImg,
-    price,
-    link,
-  } = props;
+  const {productImage, productName, productPrice, mallImg, link} = props;
 
   const onShare = useCallback(async () => {
     try {
