@@ -2,13 +2,13 @@ import React, {useContext, useState, useEffect} from 'react';
 import {AuthDispatch} from '../store/AuthStore';
 import {FlatList, SafeAreaView, Button} from 'react-native';
 import {ItemCard} from '../components/ItemCardComponent';
-import {productState, productDispatch} from '../store/productStore';
+import {exploreState, exploreDispatch} from '../store/exploreStore';
 
 const ExploreTab = ({navigation}) => {
   /*logout useContext*/
   // const {signOut} = useContext(AuthContext);
-  const {infoFindAll, testInfoFindAll} = productDispatch();
-  const pstate = productState();
+  const {explore} = exploreDispatch();
+  const pstate = exploreState();
 
   /*loading state*/
   // const [offset, setOffset] = useState(0);
@@ -17,7 +17,7 @@ const ExploreTab = ({navigation}) => {
   /*demo data*/
   useEffect(() => {
     // infoFindAll();
-    testInfoFindAll();
+    explore();
   }, []);
   const renderItem = ({item}) => {
     return (

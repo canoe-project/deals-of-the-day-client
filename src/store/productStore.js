@@ -38,7 +38,7 @@ export function ProductProvider({children}) {
       },
       testInfoFindAll: async () => {
         await Axios({
-          url: `/productsearch/cpu`,
+          url: `/explore`,
           method: 'GET',
         }).then(result => {
           dispatch({type: 'testInfoFindAll', result: result.data});

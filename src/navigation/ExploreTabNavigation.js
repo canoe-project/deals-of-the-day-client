@@ -5,14 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 /*import screen component*/
 import ExploreTab from '../screen/ExploreTabScreen';
 import DiscountDetail from '../screen/DiscountDetailScreen';
-import {ProductProvider} from '../store/productStore';
+import {ExploreProvider} from '../store/exploreStore';
 /*스택 네비게이션 생성*/
 const Stack = createStackNavigator();
 
 /*탐색 탭의 네비게이션 구성*/
 const ExploreTabNavigation = () => {
   return (
-    <ProductProvider>
+    <ExploreProvider>
       <Stack.Navigator
         initialRouteName="ExploreTab"
         screenOptions={{headerShown: false}}>
@@ -25,7 +25,7 @@ const ExploreTabNavigation = () => {
           screenOptions={{headerMode: 'none'}}
         /> */}
       </Stack.Navigator>
-    </ProductProvider>
+    </ExploreProvider>
   );
 };
 
