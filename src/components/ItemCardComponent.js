@@ -29,7 +29,9 @@ const ItemCard = props => {
       <View style={containerStyle.descriptionContainer}>
         <View style={containerStyle.productDescriptions}>
           <Text style={textStyle.productName}>{productName}</Text>
-          <Text style={textStyle.productPrice}>{productPrice} 원</Text>
+        </View>
+        <View style={containerStyle.productDescriptionsPrice}>
+          <Text style={textStyle.productPrice}>{productPrice}</Text>
         </View>
         <View
           style={[
@@ -55,6 +57,8 @@ const DetailItemCard = props => {
         <View style={[containerStyle.descriptionContainer]}>
           <View style={containerStyle.productDescriptions}>
             <Text style={textStyle.productName}>{productName}</Text>
+          </View>
+          <View style={containerStyle.productDescriptionsPrice}>
             <Text style={textStyle.productPrice}>{productPrice} 원</Text>
           </View>
           <View
