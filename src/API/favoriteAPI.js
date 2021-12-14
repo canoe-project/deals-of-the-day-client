@@ -1,12 +1,25 @@
 import Axios from '../utils/http-common';
 
-const favoriteAdd = async (pcode, email) => {
+const favoriteAdd = async (
+  email,
+  pcode,
+  shippingCost,
+  mallName,
+  mallImg,
+  price,
+  link,
+) => {
   return await Axios({
-    url: '/favorite/',
+    url: `/favorite/${mallName}`,
     method: 'POST',
     data: {
-      pcode: pcode,
       email: email,
+      pcode: pcode,
+      shippingCost: shippingCost,
+      mallName: mallName,
+      mallImg: mallImg,
+      price: price,
+      link: link,
     },
   })
     .then(result => {
@@ -16,6 +29,7 @@ const favoriteAdd = async (pcode, email) => {
       return error;
     });
 };
+
 const favoriteDelete = async pcode => {
   return await Axios({
     url: '/favorite/',

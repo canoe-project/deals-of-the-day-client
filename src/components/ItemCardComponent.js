@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useCallback, useState, useEffect, useContext} from 'react';
 import {View, Pressable, Image, Text, Share} from 'react-native';
 import {
   containerStyle,
@@ -15,7 +15,10 @@ import discount_Icon from '../assets/icon/Exprore_Icons/discount_Icon.png';
 import Share_Icon from '../assets/icon/Exprore_Icons/share_Icon.png';
 import discount_ActiveIcon from '../assets/icon/Exprore_Icons/discount_ActiveIcon.png';
 
+import {AuthState} from '../store/AuthStore';
+
 import {ImagePressable} from './CustomPressableComponet';
+import {favoriteAdd} from '../API/favoriteAPI';
 
 const ItemCard = props => {
   const {productImage, productName, productPrice, save, discountRate, onPress} =
@@ -47,7 +50,8 @@ const ItemCard = props => {
 };
 
 const DetailItemCard = props => {
-  const {productImage, productName, productPrice, save, shopData} = props;
+  const {productImage, productName, productPrice, save, shopData, pcode} =
+    props;
   return (
     <View>
       <Image
@@ -77,6 +81,9 @@ const DetailItemCard = props => {
                 mallImg={item.mallImg}
                 price={item.price}
                 link={item.link}
+                pcode={pcode}
+                mallName={item.mallName}
+                shippingCost={item.shippingCost}
               />
             );
           })}
@@ -87,8 +94,10 @@ const DetailItemCard = props => {
 };
 
 const ShopItem = props => {
-  const {mallImg, price, link} = props;
-  const onShare = async () => {
+  const {pcode, mallName, mallImg, price, link, shippingCost} = props;
+  const authstate = useContext(AuthState);
+
+  const onShare = useCallback(async () => {
     try {
       const result = await Share.share({
         message: link,
@@ -106,7 +115,21 @@ const ShopItem = props => {
     } catch (error) {
       alert(error.message);
     }
-  };
+  }, []);
+
+  const onSave = useCallback(async () => {
+    favoriteAdd(
+      authstate.userToken,
+      pcode,
+      // shippingCost,
+      // mallName,
+      // mallImg,
+      // price,
+      // link,
+    ).then(result => {
+      console.log(result);
+    });
+  }, []);
   return (
     <View style={containerStyle.shopItemContainer}>
       <Image
@@ -125,55 +148,12 @@ const ShopItem = props => {
         <ImagePressable
           image={discount_Icon}
           imageStyle={buttonStyle.defaultButtton}
+          onPress={onSave}
         />
       </View>
     </View>
   );
 };
 
-const FavoritetItemCard = props => {
-  const {productImage, productName, productPrice, mallImg, onPress} = props;
-
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message: link,
-        uri: link,
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-  return (
-    <View>
-      <Image source={{uri: `https:${productImage}`}} />
-      {/* 상품 설명*/}
-      <View>
-        <Text>{productName}</Text>
-        <Image source={{uri: `https:${mallImg}`}} />
-        <Text>{productPrice}</Text>
-      </View>
-      <ImagePressable
-        image={Share_Icon}
-        imageStyle={buttonStyle.defaultButtton}
-        onPress={onShare}
-      />
-      <ImagePressable
-        image={discount_Icon}
-        imageStyle={buttonStyle.defaultButtton}
-      />
-    </View>
-  );
-};
-
 export default ItemCard;
-export {ItemCard, DetailItemCard, FavoritetItemCard};
+export {ItemCard, DetailItemCard};

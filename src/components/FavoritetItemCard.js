@@ -1,12 +1,6 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
-import {View, Pressable, Image, Text, Share} from 'react-native';
-import {
-  containerStyle,
-  textStyle,
-  iconsStyle,
-  imageStyle,
-  buttonStyle,
-} from '../styles/ItemCardStyle';
+import {View, Image, Text, Share} from 'react-native';
+import {buttonStyle} from '../styles/ItemCardStyle';
 
 import defaultImage from '../assets/image/Explore/defaultImage.png';
 import SaveIcon from '../assets/icon/Exprore_Icons/save_Icon.png';
@@ -17,8 +11,14 @@ import discount_ActiveIcon from '../assets/icon/Exprore_Icons/discount_ActiveIco
 
 import {ImagePressable} from './CustomPressableComponet';
 
+import {
+  containerStyle,
+  textStyle,
+  imageStyle,
+} from '../styles/FavoritetItemStyle';
+
 const FavoritetItemCard = React.memo(props => {
-  const {productImage, productName, productPrice, mallImg, link} = props;
+  const {shippingCost, productName, productPrice, mallImg, link} = props;
 
   const onShare = useCallback(async () => {
     try {
@@ -41,23 +41,29 @@ const FavoritetItemCard = React.memo(props => {
   });
 
   return (
-    <View>
-      <Image source={{uri: `https:${productImage}`}} />
+    <View style={containerStyle.itemContainer}>
       {/* 상품 설명*/}
+      <Image
+        source={{uri: `https:${mallImg}`}}
+        resizeMode="contain"
+        style={imageStyle.commonImage}
+      />
       <View>
-        <Text>{productName}</Text>
-        <Image source={{uri: `https:${mallImg}`}} />
-        <Text>{productPrice}</Text>
+        <Text style={textStyle}>{productName}</Text>
+        <Text style={textStyle}>가격 {productPrice} 원</Text>
+        <Text style={textStyle}>배송비 {shippingCost} </Text>
       </View>
-      <ImagePressable
-        image={Share_Icon}
-        imageStyle={buttonStyle.defaultButtton}
-        onPress={onShare}
-      />
-      <ImagePressable
-        image={discount_Icon}
-        imageStyle={buttonStyle.defaultButtton}
-      />
+      <View style={containerStyle.buttonContainer}>
+        <ImagePressable
+          image={Share_Icon}
+          imageStyle={buttonStyle.defaultButtton}
+          onPress={onShare}
+        />
+        <ImagePressable
+          image={discount_Icon}
+          imageStyle={buttonStyle.defaultButtton}
+        />
+      </View>
     </View>
   );
 });

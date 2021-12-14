@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {DetailItemCard} from '../components/ItemCardComponent';
 import {malllistDispatch, malllistState} from '../store/mallListStore';
@@ -8,9 +8,15 @@ const DiscountDetailsScreen = ({route, navigation}) => {
   const {mallFindAll} = malllistDispatch();
   const state = malllistState();
 
-  useEffect(async () => {
-    await navigation.setOptions({title: item.name});
-    await mallFindAll(item.pcode);
+  useEffect(() => {
+    navigation.setOptions({title: item.name});
+    exploreDetail();
+  }, []);
+
+  const exploreDetail = useCallback(async () => {
+    await mallFindAll(item.pcode).then(() => {
+      console.log(state);
+    });
   }, []);
 
   return (
@@ -22,6 +28,7 @@ const DiscountDetailsScreen = ({route, navigation}) => {
         productPrice={item.price}
         save={0}
         shopData={state}
+        pcode={item.pcode}
       />
     </ScrollView>
   );

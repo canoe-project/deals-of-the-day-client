@@ -24,6 +24,17 @@ const productFindOne = async id => {
       return error;
     });
 };
-
+const testProducFindAll = async () => {
+  return await Axios({
+    url: '/hotitem/',
+    method: 'GET',
+  })
+    .then(result => {
+      return JSON.stringify(result.data);
+    })
+    .catch(error => {
+      return error;
+    });
+};
 export default productFindAll;
-export {productFindAll, productFindOne};
+export {productFindAll, productFindOne, testProducFindAll};

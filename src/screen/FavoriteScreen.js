@@ -20,14 +20,7 @@ const FavoritetScreen = props => {
     setLoading(true);
     await userFind(authstate.userToken)
       .then(result => {
-        return JSON.parse(result)['favoriteList'];
-      })
-      .then(async favoriteList => {
-        return await Promise.all(
-          favoriteList.map(async favorite => {
-            return JSON.parse(await productInfoFindOne(favorite['pcode']));
-          }),
-        );
+        return JSON.parse(result)['mallList'];
       })
       .then(result => {
         console.log(result);
@@ -41,11 +34,11 @@ const FavoritetScreen = props => {
   const renderItem = ({item}) => {
     return (
       <FavoritetItemCard
-        productImage={item.img}
-        productName={item.pname}
-        productPrice={item.price}
+        productName={item.mallName}
         mallImg={item.mallImg}
         link={item.link}
+        productPrice={item.price}
+        shippingCost={item.shippingCost}
       />
     );
   };

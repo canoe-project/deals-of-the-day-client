@@ -36,8 +36,8 @@ const SignInScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    setemail('test3@test.com');
-    setPassword('test_pw3');
+    setemail('test2@test.com');
+    setPassword('test_pw2');
   }, []);
   const {signIn} = useContext(AuthDispatch);
 

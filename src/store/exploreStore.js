@@ -6,7 +6,7 @@ const ExploreDispatchContext = createContext();
 
 export function ExploreProvider({children}) {
   const reducer = (prevState, action) => {
-    return action.result
+    return action.result;
   };
 
   const explore = useMemo(
@@ -16,6 +16,9 @@ export function ExploreProvider({children}) {
           url: `/explore`,
           method: 'GET',
         }).then(result => {
+          console.log('data :' + JSON.stringify(result.data));
+          console.log('data :' + result);
+
           dispatch({type: 'explore', result: result.data});
         });
       },

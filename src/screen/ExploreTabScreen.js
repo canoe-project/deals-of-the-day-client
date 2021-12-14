@@ -3,22 +3,24 @@ import {AuthDispatch} from '../store/AuthStore';
 import {FlatList, SafeAreaView, Button} from 'react-native';
 import {ItemCard} from '../components/ItemCardComponent';
 import {exploreState, exploreDispatch} from '../store/exploreStore';
-
+import {testProducFindAll} from '../API/productAPI';
 const ExploreTab = ({navigation}) => {
   /*logout useContext*/
-  // const {signOut} = useContext(AuthContext);
   const {explore} = exploreDispatch();
-  const pstate = exploreState();
+  const productState = exploreState();
 
-  /*loading state*/
-  // const [offset, setOffset] = useState(0);
-  // const [loading, setLoading] = useState(false);
-
-  /*demo data*/
+  // const [productState, productDispatch] = useState([]);
   useEffect(() => {
-    // infoFindAll();
     explore();
+    // testProducFindAll()
+    //   .then(async result => {
+    //     return JSON.parse(result);
+    //   })
+    //   .then(result => {
+    //     productDispatch(result);
+    //   });
   }, []);
+
   const renderItem = ({item}) => {
     return (
       <ItemCard
@@ -40,7 +42,7 @@ const ExploreTab = ({navigation}) => {
         flex: 1,
         backgroundColor: '#F2F4F9',
       }}>
-      <FlatList data={pstate} renderItem={renderItem} />
+      <FlatList data={productState} renderItem={renderItem} />
     </SafeAreaView>
   );
 };
