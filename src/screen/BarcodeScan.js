@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
-function Scan({navigation}){
+function BarcodeScan({navigation}){
 
     //variables initialization
     const [camRef, setCamRef] = useState(null);
 
-    //on successfully scanning move to results screens
+    //scan 성공하면 result 화면으로 감
     function _onBarcodeScanned(code){
         navigation.reset({
             index: 0,
@@ -41,4 +41,4 @@ const Styles = StyleSheet.create({
     },
 });
 
-export default Scan;
+export default BarcodeScan;

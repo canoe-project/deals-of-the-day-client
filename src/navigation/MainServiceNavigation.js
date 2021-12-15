@@ -22,7 +22,7 @@ import {tabBarStyle} from '../styles/TabBarStyle';
 
 import {ProductSearchProvider} from '../store/productSearchStore';
 import {MalllistProvider} from '../store/mallListStore';
-import RootNavigator from './RootNavigator';
+import SearchNavigation from './SearchNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -63,7 +63,7 @@ const MainScreen = () => {
         />
         <Tab.Screen
           name="SearchScreen"
-          component={RootNavigator}
+          component={SearchNavigation}
           options={{
             headerShown: false,
           }}

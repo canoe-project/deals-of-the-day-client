@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Icon from "react-native-dynamic-vector-icons";
 import { TextInput, TouchableOpacity, Text, View } from "react-native";
-import styles, { searchBoxContainer } from "./SearchBox.style";
+import styles, { searchBoxContainer } from "../styles/SearchBox.style";
 import { useNavigation } from '@react-navigation/native';
 
 function SearchBox(props) {
@@ -57,7 +57,7 @@ function SearchBox(props) {
             type={iconType}
             size={iconSize}
             color={iconColor}
-            onPress={() => navigation.navigate('searchResultScreen', {value})}
+            onPress={() => navigation.navigate('searchresult', {value})}
           />
         )}
       </View>

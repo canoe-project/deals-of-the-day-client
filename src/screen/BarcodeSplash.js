@@ -6,7 +6,7 @@ import {
     ActivityIndicator
 } from 'react-native';
 
-function Splash({navigation}){
+function BarcodeSplash({navigation}){
 
     //by default after 2 seconds user will be redirected to scan screen
     useEffect(()=>{
@@ -44,4 +44,4 @@ const Styles = StyleSheet.create({
     }
 });
 
-export default Splash;
+export default BarcodeSplash;

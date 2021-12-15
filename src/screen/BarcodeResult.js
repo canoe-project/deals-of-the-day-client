@@ -6,15 +6,23 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-function Result({navigation, route}){
+function BarcodeResult({navigation, route}){
 
     const {code} = route.params;
 
-    //function go to scan screen again
+    // scan screen again 으로 다시 돌아감
     function _onScanAgainClick(){
         navigation.reset({
             index: 0,
             routes: [{ name: 'scan' }],
+        });
+    }
+
+    // 검색화면으로 다시 돌아감
+    function _CancelClick(){
+        navigation.reset({
+            index : 0,
+            routes: [{ name: 'headerclassicsearchbar' }],
         });
     }
 
@@ -27,6 +35,11 @@ function Result({navigation, route}){
                 onPress={_onScanAgainClick}
                 style={Styles._btn}>
                 <Text style={{color: 'white'}}>Scan Again</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={_CancelClick}
+                style={Styles._btn}>
+                <Text style={{color: 'white'}}>Cancel</Text>
             </TouchableOpacity>
         </View>
     );
@@ -60,4 +73,4 @@ const Styles = StyleSheet.create({
     },
 });
 
-export default Result;
+export default BarcodeResult;

@@ -4,11 +4,10 @@ import {FlatList} from 'react-native-gesture-handler';
 import {FavoritetItemCard} from '../components/FavoritetItemCard';
 import {ItemCard} from '../components/ItemCardComponent';
 import {AuthState} from '../store/AuthStore';
-
 import {userFind} from '../API/userAPI';
 import {productInfoFindOne} from '../API/pinfoAPI';
 
-const SearchResultScreen = ({route, navigation}) => {
+const SearchResult = ({route, navigation}) => {
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -48,5 +47,5 @@ const SearchResultScreen = ({route, navigation}) => {
   );
 };
 
-export default SearchResultScreen;
-export {SearchResultScreen};
+export default SearchResult;
+export {SearchResult};

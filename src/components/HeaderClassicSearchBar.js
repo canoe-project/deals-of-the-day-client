@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar, Image } from "react-native";
-import styles, { shadowStyle, container, searchboxContainer } from "./HeaderClassicSearchBar.style";
+import styles, { shadowStyle, container, searchboxContainer } from "../styles/HeaderClassicSearchBar.style";
 import Androw from "react-native-androw";
 import SearchBox from "./SearchBox";
 import Icon from "react-native-dynamic-vector-icons";
 import Ripple from "react-native-material-ripple";
 import { useSafeArea } from "react-native-safe-area-context";
 
+/* 임의 데이터(상품 제목, 상품 부제목) */
 const DATA = [
   {
     id: '1',
@@ -76,12 +77,13 @@ const Item = ({ title,description, number, image }) => (
     <View style={flatstyles.item}>
       <Text style={flatstyles.number}>{number}</Text>
         <Text style={flatstyles.title}>{title}</Text>
-        <Image style={flatstyles.image} source={require('./saveimages.png')}>{image}</Image>
+        <Image style={flatstyles.image} source={require('../assets/icon/Save_Icon/saveimages.png')}>{image}</Image>
         <Text style={flatstyles.description}>{description}</Text>
     </View>
   </View>
 );
 
+/* 이미지, 상품 제목, 상품 부제목 등 여러 요소 스타일 지정 */
 const flatstyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -120,8 +122,9 @@ const flatstyles = StyleSheet.create({
 
 function HeaderClassicSearchBar (props)  {
   
-  const { shadowColor, backgroundColor, onPress } = props;
+  const { shadowColor, backgroundColor } = props;
 
+ /* 화면을 두개로 나눠서 사용하기 위한 설정 */
 const mainstyles = StyleSheet.create({
   mainView:{
     backgroundColor:'gray',
@@ -138,6 +141,7 @@ const mainstyles = StyleSheet.create({
   }
 })
 
+/* 화면 출력을 위한 반환 함수 */
 const renderItem = ({ item }) => {
 
   return <Item number={item.number} title={item.title} description={item.description} />
@@ -145,6 +149,9 @@ const renderItem = ({ item }) => {
 };
 
 const insets = useSafeArea();
+
+/* Ripple : Touchable 대체로 사용 가능(터치 가능한 요소)
+   Padding : margin과 비슷한 기능으로 공백을 주기 위해 사용 */
 
   return (
     <Androw style={shadowStyle(shadowColor)}>
