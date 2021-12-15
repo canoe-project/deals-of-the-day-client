@@ -63,7 +63,7 @@ const DetailItemCard = props => {
             <Text style={textStyle.productName}>{productName}</Text>
           </View>
           <View style={containerStyle.productDescriptionsPrice}>
-            <Text style={textStyle.productPrice}>{productPrice} 원</Text>
+            <Text style={textStyle.productPrice}>{productPrice}</Text>
           </View>
           <View
             style={[
@@ -79,7 +79,7 @@ const DetailItemCard = props => {
             return (
               <ShopItem
                 mallImg={item.mallImg}
-                price={item.price}
+                price={item.price + '원'}
                 link={item.link}
                 pcode={pcode}
                 mallName={item.mallName}
