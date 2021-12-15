@@ -3,16 +3,15 @@ import PropTypes from "prop-types";
 import Icon from "react-native-dynamic-vector-icons";
 import { TextInput, TouchableOpacity, Text, View } from "react-native";
 import styles, { searchBoxContainer } from "./SearchBox.style";
+import { useNavigation } from '@react-navigation/native';
 
-const SearchBox = props => {
+function SearchBox(props) {
   const {
-    value,
     onFocus,
     iconName,
     iconType,
     iconSize,
     iconColor,
-    onChangeText,
     searchBoxText,
     iconComponent,
     searchBoxWidth,
@@ -20,8 +19,11 @@ const SearchBox = props => {
     disableTextInput,
     searchBoxTextStyle,
     searchBoxBorderRadius,
-    searchBoxBackgroundColor
+    searchBoxBackgroundColor,
   } = props;
+
+  const [value, setSearchQuery] = React.useState('');
+  const onChangeSearch = query => setSearchQuery(query);
 
   renderTextInput = () => {
     if (disableTextInput)
@@ -30,13 +32,14 @@ const SearchBox = props => {
       <TextInput
         value={value}
         onFocus={onFocus}
-        onChangeText={onChangeText}
+        onChangeText={onChangeSearch}
         placeholder={searchBoxText}
         style={searchBoxTextStyle || styles.searchBoxTextStyle}
       />
     );
   };
-
+  const navigation = useNavigation();
+  
   return (
     <TouchableOpacity
       onPress={searchBoxOnPress}
@@ -47,15 +50,16 @@ const SearchBox = props => {
       )}
     >
       <View style={styles.searchBoxGlue}>
+        {renderTextInput()}
         {iconComponent || (
           <Icon
             name={iconName}
             type={iconType}
             size={iconSize}
             color={iconColor}
+            onPress={() => navigation.navigate('searchResultScreen', {value})}
           />
         )}
-        {renderTextInput()}
       </View>
     </TouchableOpacity>
   );
@@ -69,7 +73,7 @@ SearchBox.propTypes = {
   searchBoxText: PropTypes.string,
   disableTextInput: PropTypes.bool,
   searchBoxBorderRadius: PropTypes.number,
-  searchBoxBackgroundColor: PropTypes.string
+  searchBoxBackgroundColor: PropTypes.string,
 };
 
 SearchBox.defaultProps = {
@@ -81,7 +85,7 @@ SearchBox.defaultProps = {
   searchBoxWidth: "100%",
   searchBoxBorderRadius: 8,
   searchBoxBackgroundColor: "#f5f5f5",
-  searchBoxText: "search?"
+  searchBoxText: "search?",
 };
 
 export default SearchBox;

@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //importing screen
-import { Splash, Scan, Result } from '../screen'
+import SearchResultScreen from '../screen/SearchResultScreen';
+import { Splash, Scan, Result } from '../screen';
 import HeaderClassicSearchBar from '../components/HeaderClassicSearchBar';
 
 //making root stack variable
@@ -30,6 +31,10 @@ function RootNavigator(){
                 <RootStack.Screen
                     name='result'
                     component={Result}
+                />
+                <RootStack.Screen
+                    name='searchResultScreen'
+                    component={SearchResultScreen}
                 />
             </RootStack.Navigator>
     );

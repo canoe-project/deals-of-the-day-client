@@ -155,8 +155,7 @@ const insets = useSafeArea();
                 rippleColor="gray"
                 style={styles.rippleContainer}
                 rippleContainerBorderRadius={100}
-                onPress={() => props.navigation.navigate('splash')} 
-              >
+                onPress={() => props.navigation.navigate('splash')} >
                 <Icon name="barcode-scan" type="MaterialCommunityIcons"/>
               </Ripple>
           </View>
